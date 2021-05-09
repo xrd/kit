@@ -1,0 +1,16 @@
+{
+	"name": "~TODO~",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "svelte-kit dev",
+		"build": "svelte-kit build --verbose",
+		"start": "svelte-kit start"
+	},
+	"devDependencies": {
+		"@sveltejs/kit": "workspace:*",
+		"svelte": "^3.38.2",
+		"svelte-preprocess": "^4.7.3",
+		"typescript": "^4.2.4"
+	},
+	"type": "module"
+}
