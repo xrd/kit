@@ -10,9 +10,9 @@ If both are specified, per-page settings override per-app settings in case of co
 
 ### ssr
 
-Disabling [server-side rendering](#introduction-ssr) effectively turns your SvelteKit app into a [**single-page app** or SPA](#introduction-csr-and-spa).
+Disabling [server-side rendering](#appendix-ssr) effectively turns your SvelteKit app into a [**single-page app** or SPA](#appendix-csr-and-spa).
 
-> In most situations this is not recommended: see [the discussion in the intro](#introduction-ssr). Consider whether it's truly appropriate to disable and don't simply disable SSR because you've hit an issue with it.
+> In most situations this is not recommended: see [the discussion in the appendix](#appendix-ssr). Consider whether it's truly appropriate to disable and don't simply disable SSR because you've hit an issue with it.
 
 You can disable SSR app-wide with the [`ssr` config option](#configuration-ssr), or a page-level `ssr` export:
 
@@ -24,7 +24,7 @@ You can disable SSR app-wide with the [`ssr` config option](#configuration-ssr),
 
 ### router
 
-In certain circumstances you might need to disable [client-side routing](#introduction-routing) with the app-wide [`router` config option](#configuration-router) or the page-level `router` export:
+In certain circumstances you might need to disable [client-side routing](#appendix-routing) with the app-wide [`router` config option](#configuration-router) or the page-level `router` export:
 
 ```html
 <script context="module">
@@ -36,7 +36,7 @@ Note that this will disable client-side routing for any navigation from this pag
 
 ### hydrate
 
-Ordinarily, SvelteKit [hydrates](#introduction-hydration) your server-rendered HTML into an interactive page. Some pages don't require JavaScript at all — many blog posts and 'about' pages fall into this category. In these cases you can skip hydration when the app boots up with the app-wide [`hydrate` config option](#configuration-hydrate) or the page-level `hydrate` export:
+Ordinarily, SvelteKit [hydrates](#appendix-hydration) your server-rendered HTML into an interactive page. Some pages don't require JavaScript at all — many blog posts and 'about' pages fall into this category. In these cases you can skip hydration when the app boots up with the app-wide [`hydrate` config option](#configuration-hydrate) or the page-level `hydrate` export:
 
 ```html
 <script context="module">
@@ -48,7 +48,7 @@ Ordinarily, SvelteKit [hydrates](#introduction-hydration) your server-rendered H
 
 ### prerender
 
-It's likely that at least some pages of your app can be represented as a simple HTML file generated at build time. These pages can be [_prerendered_](#introduction-prerendering) by your [adapter](#adapters).
+It's likely that at least some pages of your app can be represented as a simple HTML file generated at build time. These pages can be [_prerendered_](#appendix-prerendering) by your [adapter](#adapters).
 
 If your entire app is suitable for prerendering, you could use [`adapter-static`](https://github.com/sveltejs/kit/tree/master/packages/adapter-static), which will generate HTML files for every page, plus additional files that are requested by `load` functions in those pages.
 
@@ -62,7 +62,7 @@ In many cases, you'll only want to prerender specific pages in your app. You'll 
 
 The prerenderer will start at the root of your app and generate HTML for any prerenderable pages it finds. Each page is scanned for `<a>` elements that point to other pages that are candidates for prerendering — because of this, you generally don't need to specify which pages should be accessed. If you _do_ need to specify which pages should be accessed by the prerenderer, you can do so with the `pages` option in the [prerender configuration](#configuration-prerender).
 
-> Not all pages are suitable for prerendering. Any content that is prerendered will be seen by all users. For a more in-depth discussion, see [the prerendering section of the introduction](#introduction-prerendering).
+> Not all pages are suitable for prerendering. Any content that is prerendered will be seen by all users. For a more in-depth discussion, see [the prerendering section of the appendix](#appendix-prerendering).
 
 #### Route conflicts
 
