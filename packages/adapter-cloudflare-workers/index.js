@@ -38,11 +38,18 @@ export default function (options) {
 			utils.log.minor('Generating worker...');
 			utils.copy(`${files}/entry.js`, '.svelte-kit/cloudflare-workers/entry.js');
 
+			const bindings = {};
+			kv_namespaces.map( id => id.binding ).forEach( b => bindings[b] = b );
+			const kv = JSON.stringify( bindings );
+			const converted = convertKvMapping(kv);
+			fs.writeFileSync( 'kv-injected-mappings.js', `export function kvMappings() { return ${converted}; }` );
+
 			/** @type {BuildOptions} */
 			const defaultOptions = {
 				entryPoints: ['.svelte-kit/cloudflare-workers/entry.js'],
 				outfile: `${entrypoint}/index.js`,
 				bundle: true,
+				inject: [ "./kv-injected-mappings.js" ],
 				target: 'es2020',
 				platform: 'browser'
 			};
